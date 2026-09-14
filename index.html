@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Daniel &amp; Olivia — 17.10.2026</title>
+<meta name="description" content="An interactive invitation to the wedding of Daniel and Olivia, October 17, 2026, ROYAL GATE, Assiut.">
+
+<!-- ============================================================
+     CUSTOMISE HERE
+     Couple names, date, venue and copy live in this file and in
+     js/script.js (WEDDING CONFIG block near the top).
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Film grain overlay, sits above everything, decorative only -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- Custom cursor (desktop only) -->
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<!-- Skip link for keyboard / screen reader users -->
+<a class="skip-link" href="#main">Skip to invitation content</a>
+
+<!-- =========================================================
+     SCENE 0 — THE INVITATION FOLIO (first thing the visitor sees)
+========================================================= -->
+<section id="box-scene" class="box-scene" aria-label="Open your invitation">
+  <div class="box-scene__bg" aria-hidden="true"></div>
+  <div class="box-scene__particles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="box-wrap">
+    <button id="box-trigger" class="folio" type="button" aria-label="Untie the ribbon and open the invitation">
+      <span class="folio__shadow" aria-hidden="true"></span>
+      
+      <!-- Inside Invitation Card (revealed when folio opens) -->
+      <div class="folio__inner-card" aria-hidden="true">
+        <div class="folio__card-border"></div>
+        <p class="folio__card-eyebrow">Together with their families</p>
+        <p class="folio__card-names">Daniel <span>&amp;</span> Olivia</p>
+        <p class="folio__card-line">Request the honour of your presence</p>
+        <p class="folio__card-date">17 · 10 · 2026</p>
+        <p class="folio__card-venue">ROYAL GATE, Assiut</p>
+      </div>
+
+      <!-- Gatefold Flaps: Left and Right covers that open outward in 3D -->
+      <div class="folio__flap folio__flap--left" aria-hidden="true">
+        <div class="folio__flap-border"></div>
+        <span class="folio__flap-crest">D</span>
+      </div>
+      <div class="folio__flap folio__flap--right" aria-hidden="true">
+        <div class="folio__flap-border"></div>
+        <span class="folio__flap-crest">O</span>
+      </div>
+
+      <!-- Horizontal Ribbon Belly Band -->
+      <span class="folio__ribbon-band folio__ribbon-band--left" aria-hidden="true"></span>
+      <span class="folio__ribbon-band folio__ribbon-band--right" aria-hidden="true"></span>
+
+      <!-- Realistic Satin Bow (Photorealistic Champagne Gold Vector Ribbon) -->
+      <div class="folio__bow" aria-hidden="true">
+        <svg viewBox="0 0 320 220" class="folio__bow-svg" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Champagne Gold Satin Outer Linear Gradient -->
+            <linearGradient id="gold-satin" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFFDF7" />
+              <stop offset="20%" stop-color="#F5E4BE" />
+              <stop offset="45%" stop-color="#D4AF67" />
+              <stop offset="75%" stop-color="#B38841" />
+              <stop offset="100%" stop-color="#7A561E" />
+            </linearGradient>
+
+            <!-- Horizontal Sheen for Loops -->
+            <linearGradient id="gold-loop-left" x1="100%" y1="50%" x2="0%" y2="50%">
+              <stop offset="0%" stop-color="#C59E56" />
+              <stop offset="25%" stop-color="#F7E6C4" />
+              <stop offset="60%" stop-color="#FFF8EA" />
+              <stop offset="85%" stop-color="#CAA25B" />
+              <stop offset="100%" stop-color="#7D571C" />
+            </linearGradient>
+
+            <linearGradient id="gold-loop-right" x1="0%" y1="50%" x2="100%" y2="50%">
+              <stop offset="0%" stop-color="#C59E56" />
+              <stop offset="25%" stop-color="#F7E6C4" />
+              <stop offset="60%" stop-color="#FFF8EA" />
+              <stop offset="85%" stop-color="#CAA25B" />
+              <stop offset="100%" stop-color="#7D571C" />
+            </linearGradient>
+
+            <!-- Deep Hollow Loop Interior Shadow (Creating realistic 3D cavity) -->
+            <radialGradient id="gold-loop-inner" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#4E340E" stop-opacity="0.95" />
+              <stop offset="65%" stop-color="#7D581E" stop-opacity="0.8" />
+              <stop offset="100%" stop-color="#B89047" stop-opacity="0.2" />
+            </radialGradient>
+
+            <!-- Tail Satin Gradient with Dimensional Highlight -->
+            <linearGradient id="gold-tail-left" x1="60%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#D7B472" />
+              <stop offset="30%" stop-color="#FFF6E0" />
+              <stop offset="55%" stop-color="#C9A35B" />
+              <stop offset="85%" stop-color="#8F6726" />
+              <stop offset="100%" stop-color="#644312" />
+            </linearGradient>
+
+            <linearGradient id="gold-tail-right" x1="40%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#D7B472" />
+              <stop offset="30%" stop-color="#FFF6E0" />
+              <stop offset="55%" stop-color="#C9A35B" />
+              <stop offset="85%" stop-color="#8F6726" />
+              <stop offset="100%" stop-color="#644312" />
+            </linearGradient>
+
+            <!-- Knot Radial Gather Gradient -->
+            <radialGradient id="gold-knot" cx="40%" cy="35%" r="60%">
+              <stop offset="0%" stop-color="#FFFFFF" />
+              <stop offset="30%" stop-color="#F7E6C4" />
+              <stop offset="65%" stop-color="#C49B51" />
+              <stop offset="100%" stop-color="#6E4A14" />
+            </radialGradient>
+
+            <!-- Ribbon Drop Shadow Filter -->
+            <filter id="ribbon-shadow" x="-20%" y="-20%" width="150%" height="150%">
+              <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#000000" flood-opacity="0.45" />
+            </filter>
+            <filter id="knot-shadow" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.55" />
+            </filter>
+          </defs>
+
+          <!-- Left Tail (flared to bottom-left) -->
+          <g class="bow__tail bow__tail--left" filter="url(#ribbon-shadow)">
+            <path d="M 152,94 C 132,126 98,162 72,198 L 104,174 L 126,204 C 145,170 156,134 160,100 Z" fill="url(#gold-tail-left)" />
+            <path d="M 150,96 C 132,128 102,164 88,186 L 98,178 C 114,152 138,124 154,98 Z" fill="#FFFDF7" opacity="0.35" />
+          </g>
+
+          <!-- Right Tail (flared to bottom-right) -->
+          <g class="bow__tail bow__tail--right" filter="url(#ribbon-shadow)">
+            <path d="M 168,94 C 188,126 222,162 248,198 L 216,174 L 194,204 C 175,170 164,134 160,100 Z" fill="url(#gold-tail-right)" />
+            <path d="M 170,96 C 188,128 218,164 232,186 L 222,178 C 206,152 182,124 166,98 Z" fill="#FFFDF7" opacity="0.35" />
+          </g>
+
+          <!-- Left Loop -->
+          <g class="bow__loop bow__loop--left" filter="url(#ribbon-shadow)">
+            <path d="M 150,76 C 112,42 66,48 40,68 C 18,84 22,104 48,114 C 80,125 124,110 150,96 Z" fill="url(#gold-loop-left)" />
+            <path d="M 148,82 C 116,58 76,64 54,78 C 38,88 44,100 64,105 C 92,112 126,101 148,91 Z" fill="url(#gold-loop-inner)" />
+            <path d="M 146,78 C 110,46 68,52 44,70 C 40,73 42,75 46,73 C 70,56 112,50 146,80 Z" fill="#FFFFFF" opacity="0.65" />
+          </g>
+
+          <!-- Right Loop -->
+          <g class="bow__loop bow__loop--right" filter="url(#ribbon-shadow)">
+            <path d="M 170,76 C 208,42 254,48 280,68 C 302,84 298,104 272,114 C 240,125 196,110 170,96 Z" fill="url(#gold-loop-right)" />
+            <path d="M 172,82 C 204,58 244,64 266,78 C 282,88 276,100 256,105 C 228,112 194,101 172,91 Z" fill="url(#gold-loop-inner)" />
+            <path d="M 174,78 C 210,46 252,52 276,70 C 280,73 278,75 274,73 C 250,56 208,50 174,80 Z" fill="#FFFFFF" opacity="0.65" />
+          </g>
+
+          <!-- Center Knot with Gather Pleats -->
+          <g class="bow__knot" filter="url(#knot-shadow)">
+            <path d="M 147,70 C 155,67 165,67 173,70 C 178,84 176,92 173,106 C 165,109 155,109 147,106 C 142,92 142,84 147,70 Z" fill="url(#gold-knot)" />
+            <path d="M 153,71 C 151,84 151,92 153,105" stroke="#7A561E" stroke-width="1.2" fill="none" opacity="0.5" />
+            <path d="M 154,71 C 152,84 152,92 154,105" stroke="#FFFDF7" stroke-width="0.8" fill="none" opacity="0.5" />
+            <path d="M 166,71 C 168,84 168,92 166,105" stroke="#7A561E" stroke-width="1.2" fill="none" opacity="0.5" />
+            <path d="M 167,71 C 169,84 169,92 167,105" stroke="#FFFDF7" stroke-width="0.8" fill="none" opacity="0.5" />
+            <ellipse cx="160" cy="76" rx="7" ry="3" fill="#FFFFFF" opacity="0.6" />
+          </g>
+        </svg>
+      </div>
+    </button>
+
+    <p class="box__hint">
+      <span class="box__hint-text">Untie &amp; Open Invitation</span>
+      <span class="box__hint-line" aria-hidden="true"></span>
+    </p>
+  </div>
+
+  <p class="box-scene__names" aria-hidden="true">Daniel <span>&amp;</span> Olivia</p>
+</section>
+
+<!-- =========================================================
+     MAIN EXPERIENCE (hidden until the box opens)
+========================================================= -->
+<div id="main" class="main" hidden>
+
+  <!-- Persistent Luxury Botanical Background Layer -->
+  <div class="botanical-bg" aria-hidden="true">
+    <!-- Top-Left Corner Botanical Vignette -->
+    <div class="botanical-corner botanical-corner--top-left">
+      <svg viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C50,25 80,70 95,120 C105,170 95,205 75,220" stroke="var(--gold-soft)" stroke-width="1.3" opacity="0.38"/>
+        <path d="M0,0 C25,50 70,80 120,95 C170,105 205,95 220,75" stroke="var(--gold-soft)" stroke-width="1.3" opacity="0.38"/>
+        <path d="M48,26 Q65,12 76,28 Q64,42 48,26" fill="var(--gold-soft)" opacity="0.22"/>
+        <path d="M26,48 Q12,65 28,76 Q42,64 26,48" fill="var(--gold-soft)" opacity="0.22"/>
+        <path d="M80,58 Q98,46 106,66 Q90,78 80,58" fill="var(--gold-soft)" opacity="0.25"/>
+        <path d="M58,80 Q46,98 66,106 Q78,90 58,80" fill="var(--gold-soft)" opacity="0.25"/>
+        <path d="M92,118 Q114,110 118,130 Q100,138 92,118" fill="var(--gold-soft)" opacity="0.2"/>
+        <path d="M118,92 Q110,114 130,118 Q138,100 118,92" fill="var(--gold-soft)" opacity="0.2"/>
+        <circle cx="18" cy="18" r="2.5" fill="var(--gold-soft)" opacity="0.4"/>
+        <circle cx="110" cy="35" r="2" fill="var(--gold-soft)" opacity="0.3"/>
+        <circle cx="35" cy="110" r="2" fill="var(--gold-soft)" opacity="0.3"/>
+      </svg>
+    </div>
+
+    <!-- Top-Right Corner Botanical Vignette -->
+    <div class="botanical-corner botanical-corner--top-right">
+      <svg viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M220,0 C170,25 140,70 125,120 C115,170 125,205 145,220" stroke="var(--gold-soft)" stroke-width="1.3" opacity="0.38"/>
+        <path d="M220,0 C195,50 150,80 100,95 C50,105 15,95 0,75" stroke="var(--gold-soft)" stroke-width="1.3" opacity="0.38"/>
+        <path d="M172,26 Q155,12 144,28 Q156,42 172,26" fill="var(--gold-soft)" opacity="0.22"/>
+        <path d="M194,48 Q208,65 192,76 Q178,64 194,48" fill="var(--gold-soft)" opacity="0.22"/>
+        <path d="M140,58 Q122,46 114,66 Q130,78 140,58" fill="var(--gold-soft)" opacity="0.25"/>
+        <path d="M162,80 Q174,98 154,106 Q142,90 162,80" fill="var(--gold-soft)" opacity="0.25"/>
+        <circle cx="202" cy="18" r="2.5" fill="var(--gold-soft)" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <!-- Bottom-Left Corner Botanical Vignette -->
+    <div class="botanical-corner botanical-corner--bottom-left">
+      <svg viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,220 C50,195 80,150 95,100 C105,50 95,15 75,0" stroke="var(--gold-soft)" stroke-width="1.3" opacity="0.38"/>
+        <path d="M0,220 C25,170 70,140 120,125 C170,115 205,125 220,145" stroke="var(--gold-soft)" stroke-width="1.3" opacity="0.38"/>
+        <path d="M48,194 Q65,208 76,192 Q64,178 48,194" fill="var(--gold-soft)" opacity="0.22"/>
+        <path d="M26,172 Q12,155 28,144 Q42,156 26,172" fill="var(--gold-soft)" opacity="0.22"/>
+        <path d="M80,162 Q98,174 106,154 Q90,142 80,162" fill="var(--gold-soft)" opacity="0.25"/>
+        <path d="M58,140 Q46,122 66,114 Q78,130 58,140" fill="var(--gold-soft)" opacity="0.25"/>
+        <circle cx="18" cy="202" r="2.5" fill="var(--gold-soft)" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <!-- Bottom-Right Corner Botanical Vignette -->
+    <div class="botanical-corner botanical-corner--bottom-right">
+      <svg viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M220,220 C170,195 140,150 125,100 C115,50 125,15 145,0" stroke="var(--gold-soft)" stroke-width="1.3" opacity="0.38"/>
+        <path d="M220,220 C195,170 150,140 100,125 C50,115 15,125 0,145" stroke="var(--gold-soft)" stroke-width="1.3" opacity="0.38"/>
+        <path d="M172,194 Q155,208 144,192 Q156,178 172,194" fill="var(--gold-soft)" opacity="0.22"/>
+        <path d="M194,172 Q208,155 192,144 Q178,156 194,172" fill="var(--gold-soft)" opacity="0.22"/>
+        <path d="M140,162 Q122,174 114,154 Q130,142 140,162" fill="var(--gold-soft)" opacity="0.25"/>
+        <path d="M162,140 Q174,122 154,114 Q142,130 162,140" fill="var(--gold-soft)" opacity="0.25"/>
+        <circle cx="202" cy="202" r="2.5" fill="var(--gold-soft)" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <!-- Left & Right Flanking Olive Vines -->
+    <div class="botanical-side botanical-side--left" aria-hidden="true">
+      <svg viewBox="0 0 60 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10,0 Q35,100 15,200 Q-5,300 20,400" stroke="var(--gold-soft)" stroke-width="1.1" opacity="0.32"/>
+        <path d="M18,60 Q34,48 40,62 Q28,72 18,60" fill="var(--gold-soft)" opacity="0.22"/>
+        <path d="M14,140 Q-2,128 4,114 Q18,124 14,140" fill="var(--gold-soft)" opacity="0.22"/>
+        <path d="M17,230 Q36,218 42,232 Q30,244 17,230" fill="var(--gold-soft)" opacity="0.22"/>
+        <path d="M10,320 Q-6,308 0,294 Q14,304 10,320" fill="var(--gold-soft)" opacity="0.22"/>
+        <circle cx="20" cy="90" r="2" fill="var(--gold)" opacity="0.35"/>
+        <circle cx="10" cy="260" r="2" fill="var(--gold)" opacity="0.35"/>
+      </svg>
+    </div>
+
+    <div class="botanical-side botanical-side--right" aria-hidden="true">
+      <svg viewBox="0 0 60 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50,0 Q25,100 45,200 Q65,300 40,400" stroke="var(--gold-soft)" stroke-width="1.1" opacity="0.32"/>
+        <path d="M42,60 Q26,48 20,62 Q32,72 42,60" fill="var(--gold-soft)" opacity="0.22"/>
+        <path d="M46,140 Q62,128 56,114 Q42,124 46,140" fill="var(--gold-soft)" opacity="0.22"/>
+        <path d="M43,230 Q24,218 18,232 Q30,244 43,230" fill="var(--gold-soft)" opacity="0.22"/>
+        <path d="M50,320 Q66,308 60,294 Q46,304 50,320" fill="var(--gold-soft)" opacity="0.22"/>
+        <circle cx="40" cy="90" r="2" fill="var(--gold)" opacity="0.35"/>
+        <circle cx="50" cy="260" r="2" fill="var(--gold)" opacity="0.35"/>
+      </svg>
+    </div>
+
+    <!-- Floating romantic ambient petals / golden dust -->
+    <div class="botanical-petals" aria-hidden="true">
+      <span class="petal p1"></span>
+      <span class="petal p2"></span>
+      <span class="petal p3"></span>
+      <span class="petal p4"></span>
+      <span class="petal p5"></span>
+      <span class="petal p6"></span>
+    </div>
+  </div>
+
+  <!-- Floating chrome: menu + music, always available once inside -->
+  <button id="menu-trigger" class="menu-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-panel">
+    <span class="menu-trigger__label">Menu</span>
+    <span class="menu-trigger__lines" aria-hidden="true"><i></i><i></i></span>
+  </button>
+
+  <button id="music-toggle" class="music-toggle" type="button" aria-pressed="false" aria-label="Play background music">
+    <span class="music-toggle__disc" aria-hidden="true">
+      <span class="music-toggle__wave" aria-hidden="true"><i></i><i></i><i></i></span>
+    </span>
+  </button>
+
+  <audio id="wedding-audio" src="music/wedding-demo.mp3" preload="none" loop></audio>
+
+  <nav id="menu-panel" class="menu-panel" aria-label="Section navigation" aria-hidden="true">
+    <ul class="menu-panel__list">
+      <li><a href="#our-story" data-menu-link>Our Story</a></li>
+      <li><a href="#the-day" data-menu-link>The Day</a></li>
+      <li><a href="#bouquet-toss" data-menu-link>Bouquet Toss</a></li>
+      <li><a href="#the-place" data-menu-link>The Place</a></li>
+      <li><a href="#photographs" data-menu-link>Photographs</a></li>
+      <li><a href="#leave-a-note" data-menu-link>Leave a Note</a></li>
+    </ul>
+    <p class="menu-panel__foot">Daniel &amp; Olivia · 17 October 2026</p>
+  </nav>
+
+  <!-- =====================================================
+       INVITATION CARD REVEAL
+  ===================================================== -->
+  <section class="invitation-reveal" aria-label="Wedding invitation">
+    <div class="invitation-card" id="invitation-card">
+      <div class="invitation-card__border" aria-hidden="true"></div>
+      <p class="invitation-card__eyebrow">Together with their families</p>
+      <p class="invitation-card__names">Daniel<span class="invitation-card__amp">&amp;</span>Olivia</p>
+      <p class="invitation-card__line">are getting married</p>
+      <p class="invitation-card__date">17 <span>·</span> 10 <span>·</span> 2026</p>
+      <p class="invitation-card__venue">ROYAL GATE, Assiut</p>
+    </div>
+    <p class="invitation-reveal__scroll" aria-hidden="true">
+      <span></span>Scroll to continue
+    </p>
+  </section>
+
+  <!-- =====================================================
+       OUR STORY — editorial timeline
+  ===================================================== -->
+  <section id="our-story" class="story">
+    <header class="section-head">
+      <p class="section-head__kicker">Our Story</p>
+      <h2 class="section-head__title">How we got here</h2>
+    </header>
+
+    <div class="story__line" aria-hidden="true"><span class="story__line-fill"></span></div>
+
+    <ol class="story__list">
+      <li class="story__item" data-year="2019">
+        <button class="story__marker" type="button" aria-expanded="false">
+          <span class="story__year">2019</span>
+          <span class="story__title">The Beginning</span>
+        </button>
+        <div class="story__body">
+          <p>A rainy Thursday, a shared umbrella, and a coffee that turned into four hours of conversation. Daniel forgot his train stop three times. Olivia let him.</p>
+        </div>
+      </li>
+      <li class="story__item" data-year="2022">
+        <button class="story__marker" type="button" aria-expanded="false">
+          <span class="story__year">2022</span>
+          <span class="story__title">The Question</span>
+        </button>
+        <div class="story__body">
+          <p>On the same street where they first met, Daniel asked the only question that mattered. Olivia's answer arrived before he'd finished asking it.</p>
+        </div>
+      </li>
+      <li class="story__item" data-year="2026">
+        <button class="story__marker" type="button" aria-expanded="false">
+          <span class="story__year">2026</span>
+          <span class="story__title">Forever</span>
+        </button>
+        <div class="story__body">
+          <p>Now, surrounded by everyone who has shaped their story, Daniel and Olivia begin the next chapter — together, always.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true"><span></span><i>&#10022;</i><span></span></div>
+
+  <!-- =====================================================
+       THE DAY — Editorial Luxury Date, Schedule & Calendar
+  ===================================================== -->
+  <section id="the-day" class="the-day-section" aria-label="The Wedding Day Details">
+    <header class="section-head">
+      <p class="section-head__kicker">Save Our Date</p>
+      <h2 class="section-head__title">The Day &amp; Celebration</h2>
+    </header>
+
+    <div class="day-showcase">
+      <!-- Main Royal Date Plaque -->
+      <div class="day-plaque">
+        <div class="day-plaque__border" aria-hidden="true"></div>
+        <div class="day-plaque__watermark" aria-hidden="true">2026</div>
+
+        <p class="day-plaque__month">October <span>·</span> 2026</p>
+        
+        <div class="day-plaque__num-wrap">
+          <span class="day-plaque__laurel day-plaque__laurel--left" aria-hidden="true">
+            <svg viewBox="0 0 45 90" fill="none" stroke="currentColor">
+              <path d="M40,5 Q15,25 20,45 Q5,65 30,88" stroke-width="1.3"/>
+              <ellipse cx="23" cy="20" rx="4" ry="7" transform="rotate(-25 23 20)" fill="currentColor" opacity="0.4"/>
+              <ellipse cx="14" cy="42" rx="4" ry="7" transform="rotate(-15 14 42)" fill="currentColor" opacity="0.4"/>
+              <ellipse cx="18" cy="65" rx="4" ry="7" transform="rotate(20 18 65)" fill="currentColor" opacity="0.4"/>
+            </svg>
+          </span>
+          <div class="day-plaque__number">17</div>
+          <span class="day-plaque__laurel day-plaque__laurel--right" aria-hidden="true">
+            <svg viewBox="0 0 45 90" fill="none" stroke="currentColor">
+              <path d="M5,5 Q30,25 25,45 Q40,65 15,88" stroke-width="1.3"/>
+              <ellipse cx="22" cy="20" rx="4" ry="7" transform="rotate(25 22 20)" fill="currentColor" opacity="0.4"/>
+              <ellipse cx="31" cy="42" rx="4" ry="7" transform="rotate(15 31 42)" fill="currentColor" opacity="0.4"/>
+              <ellipse cx="27" cy="65" rx="4" ry="7" transform="rotate(-20 27 65)" fill="currentColor" opacity="0.4"/>
+            </svg>
+          </span>
+        </div>
+
+        <p class="day-plaque__dayname">Saturday</p>
+        <p class="day-plaque__time">Six O'Clock in the Evening</p>
+        <div class="day-plaque__divider" aria-hidden="true"><span></span><i>&#10022;</i><span></span></div>
+        <p class="day-plaque__venue">ROYAL GATE, Assiut</p>
+
+        <!-- Save the date / Add to calendar action bar -->
+        <div class="day-plaque__actions">
+          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Daniel+%26+Olivia%27s+Wedding&dates=20261017T150000Z/20261017T230000Z&details=The+Wedding+of+Daniel+and+Olivia+at+The+Grand+Palace%2C+Cairo.&location=The+Grand+Palace%2C+Cairo%2C+Egypt" target="_blank" rel="noopener" class="day-btn day-btn--google">
+
+            <svg class="day-btn__icon" viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 002 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM7 11h5v5H7z"/></svg>
+            <span>Google Calendar</span>
+          </a>
+          <button type="button" id="download-ics-btn" class="day-btn day-btn--ics">
+            <svg class="day-btn__icon" viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+            <span>Apple / Outlook (.ics)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Schedule of the Day -->
+      <div class="day-timeline">
+        <div class="day-timeline__card">
+          <span class="day-timeline__time">5:30 PM</span>
+          <div class="day-timeline__dot"></div>
+          <div class="day-timeline__info">
+            <h3 class="day-timeline__title">The Ceremony</h3>
+            <p class="day-timeline__desc">Palace Gardens — Under the golden hour glow</p>
+          </div>
+        </div>
+
+        <div class="day-timeline__card">
+          <span class="day-timeline__time">6:30 PM</span>
+          <div class="day-timeline__dot"></div>
+          <div class="day-timeline__info">
+            <h3 class="day-timeline__title">Cocktails &amp; Reception</h3>
+            <p class="day-timeline__desc">Palace Terrace — Music, toasts &amp; sunset views</p>
+          </div>
+        </div>
+
+        <div class="day-timeline__card">
+          <span class="day-timeline__time">8:00 PM</span>
+          <div class="day-timeline__dot"></div>
+          <div class="day-timeline__info">
+            <h3 class="day-timeline__title">Dinner &amp; Dancing</h3>
+            <p class="day-timeline__desc">The Grand Hall — Seated dinner, first dance &amp; joy</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="countdown" aria-label="Countdown to the wedding">
+    <!-- Interlocking Wedding Rings & Olive Branch Illustration -->
+    <div class="wedding-rings-art" aria-hidden="true">
+      <svg viewBox="0 0 120 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Left Ring -->
+        <circle cx="48" cy="38" r="22" stroke="var(--gold)" stroke-width="2.5" opacity="0.85"/>
+        <circle cx="48" cy="38" r="18" stroke="var(--gold-soft)" stroke-width="1.2" opacity="0.4"/>
+        <!-- Right Ring (Interlocking) -->
+        <circle cx="72" cy="38" r="22" stroke="var(--gold-soft)" stroke-width="2.5" opacity="0.85"/>
+        <circle cx="72" cy="38" r="18" stroke="var(--gold)" stroke-width="1.2" opacity="0.4"/>
+        <!-- Diamond Solitaire on Left Ring -->
+        <polygon points="48,11 53,16 48,21 43,16" fill="var(--white-soft)" stroke="var(--gold)" stroke-width="1"/>
+        <line x1="48" y1="5" x2="48" y2="9" stroke="var(--gold)" stroke-width="1.2"/>
+        <line x1="40" y1="10" x2="43" y2="13" stroke="var(--gold)" stroke-width="1.2"/>
+        <line x1="56" y1="10" x2="53" y2="13" stroke="var(--gold)" stroke-width="1.2"/>
+        <!-- Olive Sprig flanking rings -->
+        <path d="M12,45 Q28,52 38,40" stroke="var(--gold-soft)" stroke-width="1" opacity="0.5"/>
+        <path d="M108,45 Q92,52 82,40" stroke="var(--gold-soft)" stroke-width="1" opacity="0.5"/>
+        <circle cx="20" cy="46" r="2" fill="var(--gold-soft)" opacity="0.4"/>
+        <circle cx="100" cy="46" r="2" fill="var(--gold-soft)" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <p class="countdown__kicker">Until we say</p>
+    <p class="countdown__title">"I&nbsp;Do"</p>
+    <div id="countdown-flip" class="countdown__flip" role="timer" aria-live="off">
+      <div class="flip-unit" data-unit="days">
+        <span class="flip-unit__value" data-d1>0</span><span class="flip-unit__value" data-d2>0</span>
+        <span class="flip-unit__label">Days</span>
+      </div>
+      <div class="flip-unit" data-unit="hours">
+        <span class="flip-unit__value" data-d1>0</span><span class="flip-unit__value" data-d2>0</span>
+        <span class="flip-unit__label">Hours</span>
+      </div>
+      <div class="flip-unit" data-unit="minutes">
+        <span class="flip-unit__value" data-d1>0</span><span class="flip-unit__value" data-d2>0</span>
+        <span class="flip-unit__label">Minutes</span>
+      </div>
+      <div class="flip-unit" data-unit="seconds">
+        <span class="flip-unit__value" data-d1>0</span><span class="flip-unit__value" data-d2>0</span>
+        <span class="flip-unit__label">Seconds</span>
+      </div>
+    </div>
+    <p id="countdown-arrived" class="countdown__arrived" hidden>Today is the Day</p>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true"><span></span><i>&#10022;</i><span></span></div>
+
+  <!-- =====================================================
+       THE WEDDING GAME — "The Great Bridal Bouquet Toss"
+  ===================================================== -->
+  <section id="bouquet-toss" class="bouquet-toss" aria-label="Catch the Bridal Bouquet Game">
+    <!-- Ornate Wedding Arch Illustration at the top of the game -->
+    <div class="bouquet-toss__arch" aria-hidden="true">
+      <svg viewBox="0 0 340 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10,60 C90,12 250,12 330,60" stroke="var(--gold-soft)" stroke-width="1.3" opacity="0.45"/>
+        <path d="M40,65 C110,22 230,22 300,65" stroke="var(--gold-line)" stroke-width="0.9"/>
+        <!-- Central floral blossom & sprigs -->
+        <circle cx="170" cy="18" r="4" fill="var(--gold)" opacity="0.6"/>
+        <path d="M170,14 Q174,4 178,14 Q174,24 170,14" fill="var(--gold-soft)" opacity="0.4"/>
+        <path d="M162,18 Q152,14 162,10 Q172,14 162,18" fill="var(--gold-soft)" opacity="0.4"/>
+        <path d="M178,18 Q188,14 178,10 Q168,14 178,18" fill="var(--gold-soft)" opacity="0.4"/>
+        <!-- Flanking berries & leaves -->
+        <circle cx="140" cy="24" r="2.5" fill="var(--gold-soft)" opacity="0.5"/>
+        <circle cx="200" cy="24" r="2.5" fill="var(--gold-soft)" opacity="0.5"/>
+        <circle cx="110" cy="35" r="2" fill="var(--gold-soft)" opacity="0.4"/>
+        <circle cx="230" cy="35" r="2" fill="var(--gold-soft)" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <header class="section-head">
+      <p class="section-head__kicker">A Timeless Tradition</p>
+      <h2 class="section-head__title">The Great Bouquet Toss</h2>
+      <p class="bouquet-toss__subtitle">Olivia is tossing the bridal flowers! Time your catch to claim your royal wedding fortune &amp; blessing.</p>
+    </header>
+
+    <!-- The Interactive Arena -->
+    <div class="bouquet-arena" id="bouquet-arena">
+      <!-- Confetti Canvas -->
+      <canvas id="bouquet-confetti" class="bouquet-arena__confetti" aria-hidden="true"></canvas>
+
+      <!-- Night Sky & Palace Terrace Background -->
+      <div class="bouquet-sky" aria-hidden="true">
+        <div class="bouquet-moon"></div>
+        <div class="bouquet-stars">
+          <span class="star s1"></span>
+          <span class="star s2"></span>
+          <span class="star s3"></span>
+          <span class="star s4"></span>
+          <span class="star s5"></span>
+          <span class="star s6"></span>
+        </div>
+        <!-- Fairy Lights string across the arena -->
+        <svg class="bouquet-lights" viewBox="0 0 600 50" preserveAspectRatio="none" fill="none">
+          <path d="M0,15 Q150,38 300,18 Q450,40 600,16" stroke="rgba(201,169,106,0.35)" stroke-width="1.2"/>
+          <circle cx="75" cy="24" r="3.5" fill="#fef3c7" filter="drop-shadow(0 0 4px #f59e0b)"/>
+          <circle cx="150" cy="28" r="3.5" fill="#fef3c7" filter="drop-shadow(0 0 4px #f59e0b)"/>
+          <circle cx="225" cy="24" r="3.5" fill="#fef3c7" filter="drop-shadow(0 0 4px #f59e0b)"/>
+          <circle cx="300" cy="18" r="3.5" fill="#fef3c7" filter="drop-shadow(0 0 4px #f59e0b)"/>
+          <circle cx="375" cy="26" r="3.5" fill="#fef3c7" filter="drop-shadow(0 0 4px #f59e0b)"/>
+          <circle cx="450" cy="28" r="3.5" fill="#fef3c7" filter="drop-shadow(0 0 4px #f59e0b)"/>
+          <circle cx="525" cy="22" r="3.5" fill="#fef3c7" filter="drop-shadow(0 0 4px #f59e0b)"/>
+        </svg>
+      </div>
+
+      <!-- Golden Target Catch Wreath in the sky -->
+      <div class="catch-wreath" id="catch-wreath" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="38" stroke="var(--gold)" stroke-width="1.8" stroke-dasharray="4 3" opacity="0.85"/>
+          <circle cx="50" cy="50" r="44" stroke="var(--gold-soft)" stroke-width="1" opacity="0.4"/>
+          <!-- Little floral leaves on wreath perimeter -->
+          <ellipse cx="50" cy="10" rx="3" ry="5" fill="var(--gold-soft)" opacity="0.7"/>
+          <ellipse cx="90" cy="50" rx="5" ry="3" fill="var(--gold-soft)" opacity="0.7"/>
+          <ellipse cx="50" cy="90" rx="3" ry="5" fill="var(--gold-soft)" opacity="0.7"/>
+          <ellipse cx="10" cy="50" rx="5" ry="3" fill="var(--gold-soft)" opacity="0.7"/>
+        </svg>
+        <span class="catch-wreath__pulse"></span>
+        <span class="catch-wreath__label">CATCH ZONE</span>
+      </div>
+
+      <!-- The Flying Bridal Bouquet Sprite -->
+      <div class="bouquet-sprite" id="bouquet-sprite" aria-hidden="true">
+        <svg viewBox="0 0 80 90" fill="none" class="bouquet-svg">
+          <!-- Cascading Silk Ribbons -->
+          <path class="ribbon-tail r1" d="M38,50 Q28,70 32,88 Q40,78 36,52" fill="var(--gold-soft)" opacity="0.85"/>
+          <path class="ribbon-tail r2" d="M42,50 Q52,70 48,88 Q40,78 44,52" fill="var(--champagne)" opacity="0.85"/>
+          <path class="ribbon-tail r3" d="M40,50 Q36,68 40,84" stroke="var(--gold)" stroke-width="1.5"/>
+          <!-- Stems Wrap -->
+          <rect x="36" y="44" width="8" height="14" rx="3" fill="#8a6f3b"/>
+          <line x1="38" y1="46" x2="42" y2="50" stroke="#f6f1e7" stroke-width="1"/>
+          <line x1="38" y1="52" x2="42" y2="56" stroke="#f6f1e7" stroke-width="1"/>
+          <!-- Green Eucalyptus Leaves -->
+          <ellipse cx="26" cy="36" rx="9" ry="6" transform="rotate(-30 26 36)" fill="#788b6f" opacity="0.85"/>
+          <ellipse cx="54" cy="36" rx="9" ry="6" transform="rotate(30 54 36)" fill="#788b6f" opacity="0.85"/>
+          <ellipse cx="40" cy="18" rx="6" ry="9" fill="#849979" opacity="0.85"/>
+          <!-- Lush White Roses & Blush Peonies -->
+          <circle cx="28" cy="32" r="10" fill="#fdfaf5" stroke="#dec79b" stroke-width="1"/>
+          <path d="M25,30 Q28,26 31,30 Q28,34 25,30" fill="#edd9b4"/>
+          <circle cx="52" cy="32" r="10" fill="#fdfaf5" stroke="#dec79b" stroke-width="1"/>
+          <path d="M49,30 Q52,26 55,30 Q52,34 49,30" fill="#edd9b4"/>
+          <!-- Central Queen Rose -->
+          <circle cx="40" cy="26" r="12" fill="#fffdfa" stroke="#d5b57d" stroke-width="1.2"/>
+          <path d="M36,24 Q40,20 44,24 Q40,29 36,24" fill="#edd09e"/>
+          <circle cx="40" cy="25" r="3" fill="#d9b673"/>
+          <!-- Golden Baby's Breath Accents -->
+          <circle cx="22" cy="22" r="2.5" fill="#fde68a"/>
+          <circle cx="58" cy="22" r="2.5" fill="#fde68a"/>
+          <circle cx="40" cy="10" r="2" fill="#fde68a"/>
+        </svg>
+      </div>
+
+      <!-- Floating Trailing Petals during flight -->
+      <div class="bouquet-trails" id="bouquet-trails" aria-hidden="true"></div>
+
+      <!-- Power & Aim Oscillation Meter (Active before toss) -->
+      <div class="bouquet-meter-wrap" id="bouquet-meter-wrap">
+        <div class="bouquet-meter-track">
+          <div class="bouquet-meter-fill"></div>
+          <div class="bouquet-meter-sweet"></div>
+          <div class="bouquet-meter-pointer" id="bouquet-meter-pointer"></div>
+        </div>
+        <span class="bouquet-meter-hint">Optimal Timing Sweet Spot in Center</span>
+      </div>
+
+      <!-- Main Action Controls -->
+      <div class="bouquet-controls" id="bouquet-controls">
+        <button type="button" class="bouquet-btn bouquet-btn--toss" id="bouquet-toss-btn">
+          <span class="bouquet-btn__sparkle" aria-hidden="true">&#10022;</span>
+          <span class="bouquet-btn__text">Toss The Bouquet!</span>
+          <span class="bouquet-btn__icon" aria-hidden="true">💐</span>
+        </button>
+
+        <button type="button" class="bouquet-btn bouquet-btn--catch" id="bouquet-catch-btn" hidden>
+          <span class="catch-btn__ring" aria-hidden="true"></span>
+          <span class="bouquet-btn__text">✨ CATCH NOW! ✨</span>
+        </button>
+      </div>
+
+      <!-- The Royal Keepsake / Fortune Reveal Card (Slides in when caught!) -->
+      <div class="fortune-card" id="fortune-card" hidden>
+        <div class="fortune-card__seal" aria-hidden="true">
+          <span>D&amp;O</span>
+        </div>
+        <span class="fortune-card__eyebrow" id="fortune-badge">Bouquet Caught!</span>
+        <h3 class="fortune-card__title" id="fortune-title">The Crown of Romance</h3>
+        <p class="fortune-card__blessing" id="fortune-blessing">
+          The bridal bouquet chose you! You are officially crowned the next one to walk down the aisle of eternal love.
+        </p>
+
+        <!-- Progress Counter: Fortunes Discovered (e.g. 1/6) -->
+        <div class="fortune-card__progress">
+          <span class="fortune-progress-text" id="fortune-progress-text">Discovered 1 of 6 Wedding Fortunes</span>
+          <div class="fortune-dots" id="fortune-dots">
+            <span class="f-dot is-found"></span>
+            <span class="f-dot"></span>
+            <span class="f-dot"></span>
+            <span class="f-dot"></span>
+            <span class="f-dot"></span>
+            <span class="f-dot"></span>
+          </div>
+        </div>
+
+        <div class="fortune-card__actions">
+          <button type="button" class="fortune-btn fortune-btn--again" id="fortune-again-btn">
+            Toss Again &#8634;
+          </button>
+          <a href="#leave-a-note" class="fortune-btn fortune-btn--note" id="fortune-note-btn">
+            Send With My Note &#9993;
+          </a>
+        </div>
+      </div>
+
+      <!-- Miss / Try Again Card -->
+      <div class="fortune-miss" id="fortune-miss" hidden>
+        <p class="fortune-miss__text">You caught a drifting rose petal! 🌸</p>
+        <p class="fortune-miss__sub">Olivia is ready for another toss. Time your catch right when the bouquet enters the golden ring!</p>
+        <button type="button" class="fortune-btn fortune-btn--again" id="fortune-retry-btn">
+          Try Again &#8634;
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true"><span></span><i>&#10022;</i><span></span></div>
+
+  <!-- =====================================================
+       WOW #2 — PHOTOGRAPH STACK
+  ===================================================== -->
+  <section id="photographs" class="photos" aria-label="Photographs">
+    <header class="section-head">
+      <p class="section-head__kicker">Photographs</p>
+      <h2 class="section-head__title">Five moments, held in hand</h2>
+      <p class="photos__hint">Tap or drag any photo to flip, or use the controls below</p>
+    </header>
+
+    <div class="photo-stack" id="photo-stack">
+      <!-- Photos are rendered/reordered by script.js. Replace src values in images/ to customise. -->
+      <div class="photo-card" data-index="0">
+        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="Daniel and Olivia laughing together outdoors" loading="lazy" draggable="false">
+      </div>
+      <div class="photo-card" data-index="1">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="A close detail of the wedding rings" loading="lazy" draggable="false">
+      </div>
+      <div class="photo-card" data-index="2">
+        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="Daniel and Olivia walking hand in hand" loading="lazy" draggable="false">
+      </div>
+      <div class="photo-card" data-index="3">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="An intimate portrait of the couple" loading="lazy" draggable="false">
+      </div>
+      <div class="photo-card" data-index="4">
+        <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="The couple embracing at golden hour" loading="lazy" draggable="false">
+      </div>
+    </div>
+
+    <!-- Interactive Navigation Bar for Photos -->
+    <div class="photo-controls" aria-label="Photo gallery controls">
+      <button id="photo-prev" class="photos__nav-btn" type="button" aria-label="Previous photo">&larr; Prev</button>
+      <span id="photo-counter" class="photos__counter" aria-live="polite">1 / 5</span>
+      <button id="photo-next" class="photos__nav-btn" type="button" aria-label="Next photo">Next &rarr;</button>
+    </div>
+    <button id="photo-restack" class="photos__restack" type="button">Reset Stack &#8634;</button>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true"><span></span><i>&#10022;</i><span></span></div>
+
+  <!-- =====================================================
+       THE PLACE — Venue location with Google Maps
+  ===================================================== -->
+  <section id="the-place" class="place" aria-label="Venue location">
+    <!-- Royal Palace Gate Art -->
+    <div class="palace-gate-art" aria-hidden="true">
+      <svg viewBox="0 0 110 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ornate Archway Gate -->
+        <path d="M25,65 L25,32 C25,18 40,8 55,8 C70,8 85,18 85,32 L85,65" stroke="var(--gold)" stroke-width="1.4"/>
+        <path d="M31,65 L31,34 C31,22 43,14 55,14 C67,14 79,22 79,34 L79,65" stroke="var(--gold-soft)" stroke-width="0.9" opacity="0.6"/>
+        <!-- Gate Spindles & Finials -->
+        <line x1="43" y1="20" x2="43" y2="65" stroke="var(--gold-line)" stroke-width="1"/>
+        <line x1="55" y1="14" x2="55" y2="65" stroke="var(--gold)" stroke-width="1.2"/>
+        <line x1="67" y1="20" x2="67" y2="65" stroke="var(--gold-line)" stroke-width="1"/>
+        <!-- Crown Top Finial -->
+        <path d="M55,2 L57,6 L61,6 L58,9 L59,13 L55,10 L51,13 L52,9 L49,6 L53,6 Z" fill="var(--gold)"/>
+        <!-- Flanking Olive Sprigs -->
+        <path d="M12,48 Q20,38 25,44" stroke="var(--gold-soft)" stroke-width="1.2" opacity="0.6"/>
+        <path d="M98,48 Q90,38 85,44" stroke="var(--gold-soft)" stroke-width="1.2" opacity="0.6"/>
+        <circle cx="15" cy="42" r="2" fill="var(--gold-soft)" opacity="0.5"/>
+        <circle cx="95" cy="42" r="2" fill="var(--gold-soft)" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <header class="section-head">
+      <p class="section-head__kicker">The Place</p>
+      <h2 class="section-head__title">ROYAL GATE, Assiut</h2>
+      <p class="place__meta">17 October 2026 &nbsp;·&nbsp; 6:00&nbsp;PM</p>
+    </header>
+
+    <div class="place__wrapper">
+      <!-- Luxury Gilded Map Plaque Container -->
+      <div class="place__map-card">
+        <!-- Integrated Editorial Top Status Bar -->
+        <div class="place__frame-head">
+          <div class="place__frame-badge">
+            <span class="place__pin-pulse-dot" aria-hidden="true"></span>
+            <span class="place__badge-title">ROYAL GATE · ASSIUT</span>
+          </div>
+          <span class="place__frame-coords">27°11'23"N · 31°11'21"E</span>
+        </div>
+
+        <!-- The Map Window with Official Google Maps Embed -->
+        <div class="place__map" id="place-map">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3548.938509883959!2d31.18905607451551!3d27.1896693481353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14450bf56b6af659%3A0x46b7ca709fd7ed8!2sROYAL%20GATE!5e0!3m2!1sen!2seg!4v1789384981813!5m2!1sen!2seg" 
+            width="100%" 
+            height="450" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="eager"
+            title="ROYAL GATE Location on Google Maps" 
+            class="place__iframe">
+          </iframe>
+
+          <!-- Translucent Golden Veil Overlay (Light & high transparency, allows full interaction) -->
+          <div class="place__gold-veil" aria-hidden="true"></div>
+        </div>
+
+        <!-- Venue Details & Direct Actions Plaque -->
+        <div class="place__card">
+          <div class="place__card-crest" aria-hidden="true">
+            <span class="place__crest-initials">RG</span>
+          </div>
+
+          <div class="place__card-details">
+            <h3 class="place__card-name">ROYAL GATE</h3>
+            <p class="place__card-addr">Assiut, Egypt &nbsp;·&nbsp; Grand Wedding Hall</p>
+            <div class="place__card-features">
+              <span class="place__feature-pill">✦ Valet Parking</span>
+              <span class="place__feature-pill">✦ Air Conditioned</span>
+              <span class="place__feature-pill">✦ Reception 6:00 PM</span>
+            </div>
+          </div>
+
+          <div class="place__card-actions">
+            <a href="https://maps.google.com/?cid=5095818961917769176" target="_blank" rel="noopener" class="place__card-cta" id="open-location">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+              <span>Open in Google Maps</span>&nbsp;&rarr;
+            </a>
+            <button type="button" class="place__card-copy-btn" id="copy-coords-btn" title="Copy GPS Coordinates">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span id="copy-coords-text">27.1896, 31.1890</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true"><span></span><i>&#10022;</i><span></span></div>
+
+  <!-- =====================================================
+       WOW #3 — LEAVE A NOTE
+  ===================================================== -->
+  <section id="leave-a-note" class="note" aria-label="Leave a note">
+    <!-- Clinking Champagne Toast Art -->
+    <div class="champagne-toast-art" aria-hidden="true">
+      <svg viewBox="0 0 100 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Left Flute -->
+        <g transform="rotate(15 42 35)">
+          <path d="M38,6 L46,6 L44,28 Q42,32 38,32 Q34,32 32,28 L30,6 Z" stroke="var(--gold)" stroke-width="1.3" fill="rgba(247,230,196,0.2)"/>
+          <line x1="38" y1="32" x2="38" y2="52" stroke="var(--gold)" stroke-width="1.4"/>
+          <path d="M28,52 L48,52" stroke="var(--gold)" stroke-width="1.4"/>
+        </g>
+        <!-- Right Flute -->
+        <g transform="rotate(-15 58 35)">
+          <path d="M58,6 L66,6 L64,28 Q62,32 58,32 Q54,32 52,28 L50,6 Z" stroke="var(--gold-soft)" stroke-width="1.3" fill="rgba(247,230,196,0.2)"/>
+          <line x1="58" y1="32" x2="58" y2="52" stroke="var(--gold-soft)" stroke-width="1.4"/>
+          <path d="M48,52 L68,52" stroke="var(--gold-soft)" stroke-width="1.4"/>
+        </g>
+        <!-- Toast Sparkles -->
+        <circle cx="50" cy="8" r="2.5" fill="var(--gold)"/>
+        <path d="M50,0 L50,16 M42,8 L58,8" stroke="var(--gold)" stroke-width="1" opacity="0.6"/>
+        <circle cx="43" cy="18" r="1.5" fill="var(--gold-soft)" opacity="0.7"/>
+        <circle cx="57" cy="18" r="1.5" fill="var(--gold-soft)" opacity="0.7"/>
+      </svg>
+    </div>
+
+    <header class="section-head">
+      <p class="section-head__kicker">Leave a Note</p>
+      <h2 class="section-head__title">A little message for Daniel &amp; Olivia</h2>
+    </header>
+
+    <div class="note__stage">
+      <form id="note-form" class="note-form" novalidate>
+        <label class="note-form__field">
+          <span>Your Name</span>
+          <input type="text" name="name" id="note-name" autocomplete="name" required>
+        </label>
+        <label class="note-form__field">
+          <span>Your Message</span>
+          <textarea name="message" id="note-message" rows="4" required></textarea>
+        </label>
+        <p class="note-form__error" id="note-error" role="alert" hidden>Please share your name and a short message before sending.</p>
+        <button type="submit" class="note-form__submit">Send Your Note</button>
+      </form>
+
+      <!-- 3D Realistic Envelope & Stationery Stage -->
+      <div class="letter-stage" id="letter-stage" aria-hidden="true">
+        <div class="envelope-craft" id="envelope-craft">
+          <!-- Envelope Back Wall & Silk Lining -->
+          <div class="envelope__back">
+            <div class="envelope__lining"></div>
+          </div>
+
+          <!-- Top Triangular Flap (starts open upwards) -->
+          <div class="envelope__flap-top" id="envelope-flap">
+            <div class="envelope__flap-crease"></div>
+          </div>
+
+          <!-- The Stationery Letter Card (Layered between Back and Front Pocket) -->
+          <div class="envelope__letter" id="letter-paper">
+            <div class="letter-card">
+              <div class="letter-card__top">
+                <span class="letter-card__monogram">D &amp; O</span>
+                <span class="letter-card__date">17.10.2026</span>
+              </div>
+              <p class="letter-stage__from"></p>
+              <div class="letter-card__divider"><span></span><i>&#10022;</i><span></span></div>
+              <p class="letter-stage__body"></p>
+            </div>
+          </div>
+
+          <!-- Front Pocket: Holds the card and covers its lower body as it slides inside -->
+          <div class="envelope__front">
+            <div class="envelope__pocket-left"></div>
+            <div class="envelope__pocket-right"></div>
+            <div class="envelope__pocket-bottom"></div>
+            <div class="envelope__pocket-shadow"></div>
+          </div>
+
+          <!-- Royal Gold Wax Seal Medallion -->
+          <div class="envelope__wax-seal" id="envelope-seal">
+            <span class="wax-seal__rim"></span>
+            <span class="wax-seal__monogram">D&amp;O</span>
+            <span class="wax-seal__shine"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="note__sealed" id="note-sealed" hidden>
+        <p class="note__sealed-title">Your Note Has Been Sealed</p>
+        <p class="note__sealed-sub">A little piece of your heart, left in their story.</p>
+        <button type="button" class="note__sealed-again" id="note-again">Write another note</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       FINAL CLOSING LOOP
+  ===================================================== -->
+  <section class="closing" aria-label="Closing">
+    <div class="closing__card" id="closing-card">
+      <div class="invitation-card__border" aria-hidden="true"></div>
+      <p class="invitation-card__names">Daniel<span class="invitation-card__amp">&amp;</span>Olivia</p>
+      <p class="invitation-card__date">17 <span>·</span> 10 <span>·</span> 2026</p>
+      <p class="closing__thanks">Thank you for being part of our story</p>
+    </div>
+    <button id="close-invitation" class="closing__button" type="button">Close the Invitation</button>
+
+    <!-- Hidden secret ornament -->
+    <button id="secret-ornament" class="secret-ornament" type="button" aria-label="A small decorative detail">&#10022;</button>
+  </section>
+
+</div><!-- /#main -->
+
+<!-- Secret reveal overlay -->
+<div id="secret-overlay" class="secret-overlay" hidden>
+  <div class="secret-overlay__inner">
+    <p>You Found Our Little Secret</p>
+    <p>Now you're part of the story.</p>
+    <button type="button" id="secret-close">Close</button>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
