@@ -131,11 +131,11 @@
 
     // Realistic Physical Untying & Gravity Fall Sequence:
     // 0.0s - 0.6s: Right tail pulled, loops unravel into wavy ribbons
-    // 0.45s - 1.85s: Entire bow & belly bands fall down and drop off folio ("بتتفك وبتقع")
-    // 1.1s - 2.5s: 3D gatefold flaps swing wide open in perspective
-    // 1.2s - 2.6s: Inner gold card rises into full view
-    // 2.6s - 3.2s: Brief pause to admire the revealed invitation card
-    // 3.2s: Folio scene dissolves smoothly into main experience
+    // 0.45s - 1.85s: Entire bow & belly bands fall down and drop off folio ("unties and falls away")
+    // 0.55s - 1.7s: 3D gatefold flaps swing wide open in perspective
+    // 0.65s - 1.8s: Inner gold card rises into full view with metallic light sweep
+    // 1.8s - 2.5s: Brief pause to admire the revealed invitation card
+    // 2.5s: Folio scene dissolves smoothly into main experience
     window.setTimeout(() => {
       boxScene.classList.add("is-open");
       mainEl.hidden = false;
@@ -143,7 +143,7 @@
       // Move focus into the experience for keyboard/screen-reader users.
       $(".invitation-card").setAttribute("tabindex", "-1");
       $(".invitation-card").focus({ preventScroll: true });
-    }, prefersReducedMotion ? 50 : 3200);
+    }, prefersReducedMotion ? 50 : 2500);
   }
 
   if (boxTrigger) {
@@ -348,6 +348,7 @@
     const catchBtn = $("#bouquet-catch-btn");
     const trailsContainer = $("#bouquet-trails");
     const confettiCanvas = $("#bouquet-confetti");
+    const winnerCelebration = $("#winner-celebration");
 
     const fortuneCard = $("#fortune-card");
     const fortuneTitle = $("#fortune-title");
@@ -414,18 +415,19 @@
         const ctx = new AudioCtx();
         if (ctx.state === "suspended") ctx.resume();
 
-        const notes = isWin ? [523.25, 659.25, 783.99, 1046.5] : [440, 392]; // C5, E5, G5, C6
+        // Royal victory fanfare chords on win (C5, E5, G5, C6, E6)
+        const notes = isWin ? [523.25, 659.25, 783.99, 1046.5, 1318.5] : [440, 392];
         notes.forEach((freq, i) => {
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
-          osc.type = "sine";
-          osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.12);
-          gain.gain.setValueAtTime(0.08, ctx.currentTime + i * 0.12);
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.12 + 0.5);
+          osc.type = isWin ? "triangle" : "sine";
+          osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.11);
+          gain.gain.setValueAtTime(0.1, ctx.currentTime + i * 0.11);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.11 + 0.65);
           osc.connect(gain);
           gain.connect(ctx.destination);
-          osc.start(ctx.currentTime + i * 0.12);
-          osc.stop(ctx.currentTime + i * 0.12 + 0.55);
+          osc.start(ctx.currentTime + i * 0.11);
+          osc.stop(ctx.currentTime + i * 0.11 + 0.7);
         });
       } catch (err) {}
     }
@@ -438,20 +440,20 @@
       confettiCanvas.width = rect.width;
       confettiCanvas.height = rect.height;
 
-      const colors = ["#c9a96a", "#b08d4f", "#fef3c7", "#fcd34d", "#fbcfe8", "#ffffff"];
+      const colors = ["#c9a96a", "#b08d4f", "#fef3c7", "#fcd34d", "#fbcfe8", "#ffffff", "#ffd700"];
       const particles = [];
-      const count = Math.min(80, Math.floor(rect.width / 5));
+      const count = Math.min(110, Math.floor(rect.width / 3.8));
 
       for (let i = 0; i < count; i++) {
         particles.push({
-          x: rect.width * 0.5 + (Math.random() - 0.5) * 80,
-          y: rect.height * 0.3 + (Math.random() - 0.5) * 40,
-          vx: (Math.random() - 0.5) * 8,
-          vy: -Math.random() * 6 - 2,
-          size: Math.random() * 6 + 4,
+          x: rect.width * 0.5 + (Math.random() - 0.5) * 120,
+          y: rect.height * 0.38 + (Math.random() - 0.5) * 50,
+          vx: (Math.random() - 0.5) * 10,
+          vy: -Math.random() * 8 - 2.5,
+          size: Math.random() * 7 + 4,
           color: colors[Math.floor(Math.random() * colors.length)],
           rotation: Math.random() * 360,
-          vr: (Math.random() - 0.5) * 12,
+          vr: (Math.random() - 0.5) * 14,
           alpha: 1,
           shape: Math.random() > 0.4 ? "petal" : "ribbon"
         });
@@ -511,11 +513,11 @@
       } catch (e) {}
     }
 
-    // Power meter animation
+    // Power meter animation (smooth comfortable oscillation)
     function startMeter() {
       if (meterReq) cancelAnimationFrame(meterReq);
       function loop() {
-        meterTime += 0.045;
+        meterTime += 0.032;
         // Sine oscillation between 8% and 92%
         meterValue = 50 + 42 * Math.sin(meterTime);
         if (meterPointer) meterPointer.style.left = `${meterValue}%`;
@@ -528,24 +530,6 @@
       if (meterReq) cancelAnimationFrame(meterReq);
     }
 
-    // Reset arena to initial ready state
-    function resetArena() {
-      isFlying = false;
-      hasCaught = false;
-      if (flightReq) cancelAnimationFrame(flightReq);
-      trailsContainer.innerHTML = "";
-
-      fortuneCard.hidden = true;
-      missCard.hidden = true;
-      meterWrap.classList.remove("is-hidden");
-      catchBtn.hidden = true;
-      tossBtn.hidden = false;
-
-      sprite.style.opacity = "1";
-      sprite.style.transform = "translate(-50%, 0)";
-      sprite.classList.add("is-resting");
-      startMeter();
-    }
 
     // Launch the bridal bouquet
     let tossAccurate = false;
@@ -561,16 +545,16 @@
       const power = meterValue;
       stopMeter();
 
-      // Check if the toss is in the golden sweet spot (38% to 62%)
-      if (power >= 38 && power <= 62) {
+      // Generous golden sweet spot (18% to 82%) for easy, satisfying wins
+      if (power >= 18 && power <= 82) {
         tossAccurate = true;
         tossMissReason = "";
-      } else if (power < 38) {
+      } else if (power < 18) {
         tossAccurate = false;
-        tossMissReason = "Toss was too gentle! Aim for the golden sweet spot in the center 🌸";
+        tossMissReason = "Gentle toss! Aim a little closer to the center golden zone 🌸";
       } else {
         tossAccurate = false;
-        tossMissReason = "Overshot the wreath! Keep the meter in the center zone 🌸";
+        tossMissReason = "Powerful toss! Aim a little closer to the center golden zone 🌸";
       }
 
       sprite.classList.remove("is-resting");
@@ -595,20 +579,18 @@
       let endY = arenaH - 25;
 
       if (!tossAccurate) {
-        if (power < 38) {
-          // Weak: peaks lower, drops earlier
-          peakY = arenaH * 0.56;
-          endX = arenaW * 0.62;
+        if (power < 18) {
+          peakY = arenaH * 0.54;
+          endX = arenaW * 0.64;
           endY = arenaH - 40;
         } else {
-          // Overpowered: peaks high and overshoots past wreath
-          peakY = arenaH * 0.14;
-          endX = arenaW * 0.92;
+          peakY = arenaH * 0.16;
+          endX = arenaW * 0.90;
           endY = arenaH - 10;
         }
       }
 
-      const duration = 2200; // ms
+      const duration = 2600; // ms (relaxed comfortable flight)
       const startTime = performance.now();
 
       function flightLoop(now) {
@@ -626,7 +608,7 @@
         sprite.style.transform = `translate(-50%, -50%) rotate(${currentRot}deg)`;
 
         // Spawn dynamic trailing blossom petals
-        if (now - lastPetalSpawn > 90 && t < 0.88) {
+        if (now - lastPetalSpawn > 80 && t < 0.88) {
           lastPetalSpawn = now;
           const petal = document.createElement("span");
           petal.className = "trail-petal";
@@ -642,13 +624,17 @@
           setTimeout(() => petal.remove(), 800);
         }
 
-        // Highlight wreath only if the toss is on target and entering the wreath window (0.40 to 0.60)
-        if (tossAccurate && t >= 0.40 && t <= 0.60) {
+        // Highlight wreath and catch button during generous sweet timing window (0.24 to 0.82)
+        if (tossAccurate && t >= 0.24 && t <= 0.82) {
+          catchBtn.classList.add("is-in-range");
           wreath.style.transform = "translate(-50%, -50%) scale(1.18)";
-          wreath.style.filter = "drop-shadow(0 0 12px rgba(201,169,106,.8))";
+          wreath.style.filter = "drop-shadow(0 0 16px rgba(245,214,138,.9))";
         } else {
-          wreath.style.transform = "translate(-50%, -50%) scale(1)";
-          wreath.style.filter = "none";
+          catchBtn.classList.remove("is-in-range");
+          if (!hasCaught) {
+            wreath.style.transform = "translate(-50%, -50%) scale(1)";
+            wreath.style.filter = "none";
+          }
         }
 
         if (t < 1 && !hasCaught) {
@@ -662,7 +648,7 @@
       flightReq = requestAnimationFrame(flightLoop);
     }
 
-    // Catch attempt triggered specifically by catchBtn or spacebar
+    // Catch attempt triggered by catchBtn, spacebar, or direct arena tap
     function handleCatch() {
       if (!isFlying || hasCaught) return;
 
@@ -676,19 +662,30 @@
 
       const dist = Math.hypot(spriteCenterX - wreathCenterX, spriteCenterY - wreathCenterY);
 
-      // Real hit condition: toss was accurate AND bouquet is physically inside the lowered wreath!
-      const isInsideWreath = tossAccurate && dist < (wreathRect.width * 0.52);
+      // Highly forgiving win condition:
+      // If toss is accurate and in the comfortable window (0.20 to 0.86), OR within generous wreath radius
+      const isInsideWreath = (tossAccurate && tossProgress >= 0.20 && tossProgress <= 0.86) || dist < (wreathRect.width * 0.95);
 
       if (isInsideWreath) {
         hasCaught = true;
         if (flightReq) cancelAnimationFrame(flightReq);
+        catchBtn.classList.remove("is-in-range");
         catchBtn.hidden = true;
         catchBtn.style.display = "none";
 
-        // Snap bouquet into wreath with golden flare
+        // Snap bouquet into wreath with glorious victory celebration
+        wreath.classList.add("is-won");
+        sprite.classList.add("is-caught");
         sprite.style.left = "50%";
         sprite.style.top = "38%";
-        sprite.style.transform = "translate(-50%, -50%) scale(1.08) rotate(0deg)";
+
+        if (winnerCelebration) {
+          winnerCelebration.classList.add("is-visible");
+        }
+
+        if (navigator.vibrate) {
+          navigator.vibrate([40, 70, 140]);
+        }
 
         playChime(true);
         launchConfetti();
@@ -732,8 +729,8 @@
         // Missed! Provide specific informative feedback
         if (!tossAccurate) {
           handleMiss(tossMissReason);
-        } else if (tossProgress < 0.40) {
-          handleMiss("Too early! The bouquet hasn't reached the golden wreath yet 🌸");
+        } else if (tossProgress < 0.20) {
+          handleMiss("A bit early! Let the bouquet rise towards the golden wreath 🌸");
         } else {
           handleMiss("A bit late! The bouquet already drifted past the wreath 🌸");
         }
@@ -771,9 +768,16 @@
       missCard.hidden = true;
       meterWrap.classList.remove("is-hidden");
       catchBtn.hidden = true;
+      catchBtn.classList.remove("is-in-range");
       catchBtn.style.display = "none";
       tossBtn.hidden = false;
       tossBtn.style.display = "inline-flex";
+
+      wreath.classList.remove("is-won");
+      wreath.style.transform = "";
+      wreath.style.filter = "";
+      sprite.classList.remove("is-caught");
+      if (winnerCelebration) winnerCelebration.classList.remove("is-visible");
 
       sprite.style.opacity = "1";
       sprite.style.left = "50%";
@@ -789,6 +793,15 @@
     catchBtn.addEventListener("click", handleCatch);
     fortuneAgainBtn.addEventListener("click", resetArena);
     retryBtn.addEventListener("click", resetArena);
+
+    // Direct tap anywhere on arena during flight to catch (mobile-friendly)
+    arena.addEventListener("click", (e) => {
+      if (isFlying && !hasCaught) {
+        if (!e.target.closest("button") || e.target.closest("#bouquet-catch-btn")) {
+          handleCatch();
+        }
+      }
+    });
 
     // Keyboard support: Spacebar launches or catches
     document.addEventListener("keydown", (e) => {
@@ -1189,7 +1202,7 @@
      GENERIC SCROLL-REVEAL
   --------------------------------------------------------- */
   (function initReveal() {
-    const targets = $$(".section-head, .story, .the-day-section, .bouquet-toss, .place__map, .photo-stack");
+    const targets = $$(".section-head, .story, .the-day-section, .dress-code, .bouquet-toss, .place__map, .photo-stack");
     if (!("IntersectionObserver" in window) || !targets.length) return;
     targets.forEach((t) => t.classList.add("reveal"));
     const io = new IntersectionObserver(
@@ -1204,5 +1217,31 @@
       { threshold: 0.15 }
     );
     targets.forEach((t) => io.observe(t));
+  })();
+
+  /* ---------------------------------------------------------
+     DRESS CODE SWATCH INTERACTION (Click to copy hex)
+  --------------------------------------------------------- */
+  (function initDressCode() {
+    const swatches = $$(".swatch-item");
+    swatches.forEach((swatch) => {
+      swatch.style.cursor = "pointer";
+      swatch.setAttribute("title", "Click to copy color code");
+      swatch.addEventListener("click", () => {
+        const hex = swatch.querySelector(".swatch-hex");
+        if (!hex) return;
+        const text = hex.textContent.trim();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text);
+        }
+        const orig = hex.textContent;
+        hex.textContent = "Copied! ✓";
+        hex.style.color = "var(--gold)";
+        setTimeout(() => {
+          hex.textContent = orig;
+          hex.style.color = "";
+        }, 1400);
+      });
+    });
   })();
 })();
