@@ -14,7 +14,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -45,6 +45,17 @@
       <!-- Inside Invitation Card (revealed when folio opens) -->
       <div class="folio__inner-card" aria-hidden="true">
         <div class="folio__card-border"></div>
+        <div class="folio__card-arabic-header" lang="ar" aria-label="الليل وسماه ونجومه وقمره">
+          <span class="arabic-header__celestial" aria-hidden="true">
+            <span class="arabic-header__moon">☽</span>
+            <span class="arabic-header__star">✦</span>
+          </span>
+          <span class="arabic-header__verse">الليل وسماه ونجومه وقمره</span>
+          <span class="arabic-header__musical" aria-hidden="true" title="Playing music">
+            <span class="arabic-header__note">♪</span>
+            <span class="arabic-header__wave"><i></i><i></i><i></i></span>
+          </span>
+        </div>
         <p class="folio__card-eyebrow">A Royal Celebration</p>
         <p class="folio__card-names">Daniel <span>&amp;</span> Olivia</p>
         <p class="folio__card-line">Request the honour of your presence</p>
@@ -317,6 +328,17 @@
   <section class="invitation-reveal" aria-label="Wedding invitation">
     <div class="invitation-card" id="invitation-card">
       <div class="invitation-card__border" aria-hidden="true"></div>
+      <div class="invitation-card__arabic-header" lang="ar" aria-label="الليل وسماه ونجومه وقمره">
+        <span class="arabic-header__celestial" aria-hidden="true">
+          <span class="arabic-header__moon">☽</span>
+          <span class="arabic-header__star">✦</span>
+        </span>
+        <span class="arabic-header__verse">الليل وسماه ونجومه وقمره</span>
+        <span class="arabic-header__musical" aria-hidden="true" title="Playing music">
+          <span class="arabic-header__note">♪</span>
+          <span class="arabic-header__wave"><i></i><i></i><i></i></span>
+        </span>
+      </div>
       <p class="invitation-card__eyebrow">Together with their families</p>
       <p class="invitation-card__names">Daniel<span class="invitation-card__amp">&amp;</span>Olivia</p>
       <p class="invitation-card__line">Request the pleasure of your company to celebrate their wedding</p>

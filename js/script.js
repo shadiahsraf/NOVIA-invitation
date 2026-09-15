@@ -88,6 +88,7 @@
         musicToggle.classList.add("is-playing");
         musicToggle.setAttribute("aria-pressed", "true");
         musicToggle.setAttribute("aria-label", "Pause background music");
+        document.body.classList.add("is-music-playing");
       }).catch(() => {
         // Autoplay blocked or file missing — fail silently, site keeps working.
         audioReady = true;
@@ -101,6 +102,7 @@
     musicToggle.classList.remove("is-playing");
     musicToggle.setAttribute("aria-pressed", "false");
     musicToggle.setAttribute("aria-label", "Play background music");
+    document.body.classList.remove("is-music-playing");
   }
 
   if (audio) {
@@ -113,6 +115,15 @@
       else playMusic();
     });
   }
+
+  const songBanners = $$(".folio__card-arabic-header, .invitation-card__arabic-header");
+  songBanners.forEach(b => {
+    b.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (musicToggle && musicToggle.classList.contains("is-playing")) pauseMusic();
+      else playMusic();
+    });
+  });
 
   /* ---------------------------------------------------------
      THE INVITATION BOX — WOW MOMENT #1

@@ -21,6 +21,7 @@
   --f-display: 'Playfair Display', 'Times New Roman', serif;
   --f-serif:   'Cormorant Garamond', Georgia, serif;
   --f-sans:    'Jost', 'Helvetica Neue', Arial, sans-serif;
+  --f-arabic:  'Amiri', 'Traditional Arabic', serif;
 
   /* ---- layout ---- */
   --gutter: clamp(20px, 6vw, 64px);
@@ -259,9 +260,130 @@ a{ color: inherit; text-decoration: none; }
 .folio__card-border::before{ top: -1px; left: -1px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
 .folio__card-border::after{ bottom: -1px; right: -1px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
 
+/* Creative Musical & Celestial Song Tribute ("الليل وسماه ونجومه وقمره") */
+.folio__card-arabic-header,
+.invitation-card__arabic-header{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(5px, 1.6vw, 10px);
+  direction: rtl;
+  text-align: center;
+  margin-bottom: .55em;
+  padding: 3px 12px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(176,141,79,.09) 0%, rgba(201,169,106,.16) 50%, rgba(176,141,79,.07) 100%);
+  border: 1px solid rgba(176,141,79,.32);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 3px 10px -3px rgba(176,141,79,.2);
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  transition: transform var(--dur-fast), border-color var(--dur-fast), box-shadow var(--dur-fast);
+}
+.folio__card-arabic-header:hover,
+.invitation-card__arabic-header:hover{
+  border-color: rgba(176,141,79,.6);
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.85), 0 5px 14px -3px rgba(176,141,79,.3);
+}
+
+.arabic-header__celestial{
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--gold);
+  line-height: 1;
+}
+.arabic-header__moon{
+  font-size: 1.1em;
+  display: inline-block;
+  transform: rotate(-10deg);
+  animation: moonGlow 3.6s ease-in-out infinite alternate;
+}
+.arabic-header__star{
+  font-size: .8em;
+  display: inline-block;
+  color: var(--gold-soft);
+  animation: starTwinkle 2.4s ease-in-out infinite;
+}
+
+.arabic-header__verse{
+  font-family: var(--f-arabic);
+  font-size: clamp(1.02rem, 3vw, 1.28rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+  color: var(--gold);
+  background: linear-gradient(135deg, #957235 0%, #c9a96a 35%, #f6e6b8 50%, #c9a96a 65%, #8c6527 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: lyricGoldShimmer 6s linear infinite;
+  text-shadow: 0 1px 1px rgba(255,255,255,.7);
+  white-space: nowrap;
+}
+
+.arabic-header__musical{
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--gold);
+  line-height: 1;
+}
+.arabic-header__note{
+  font-size: .9em;
+  display: inline-block;
+  color: var(--gold);
+  opacity: .9;
+  animation: noteFloat 2s ease-in-out infinite alternate;
+}
+.arabic-header__wave{
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+.arabic-header__wave i{
+  width: 2px;
+  background: var(--gold);
+  border-radius: 1px;
+  opacity: .85;
+  height: 35%;
+  animation: lyricWave 1.1s ease-in-out infinite;
+}
+.arabic-header__wave i:nth-child(2){ animation-delay: .2s; }
+.arabic-header__wave i:nth-child(3){ animation-delay: .4s; }
+body:not(.is-music-playing) .arabic-header__wave i{
+  animation-play-state: paused;
+}
+body.is-music-playing .arabic-header__wave i{
+  animation-play-state: running;
+}
+
+@keyframes lyricWave{
+  0%, 100%{ height: 25%; }
+  50%{ height: 95%; }
+}
+@keyframes lyricGoldShimmer{
+  0%{ background-position: 0% 50%; }
+  50%{ background-position: 100% 50%; }
+  100%{ background-position: 0% 50%; }
+}
+@keyframes starTwinkle{
+  0%, 100%{ transform: scale(0.85); opacity: .6; }
+  50%{ transform: scale(1.2); opacity: 1; filter: drop-shadow(0 0 5px rgba(212,175,103,.8)); }
+}
+@keyframes moonGlow{
+  0%{ filter: drop-shadow(0 0 1px rgba(201,169,106,.3)); }
+  100%{ filter: drop-shadow(0 0 6px rgba(230,202,133,.8)); }
+}
+@keyframes noteFloat{
+  0%{ transform: translateY(0); }
+  100%{ transform: translateY(-2px); }
+}
 .folio__card-eyebrow{
   font-family: var(--f-serif); font-style: italic; font-size: .88rem; color: var(--brown); opacity: .85;
-  margin-bottom: .8em;
+  margin-bottom: .65em;
 }
 .folio__card-names{
   font-family: var(--f-display); font-weight: 500; font-size: clamp(1.8rem, 6vw, 2.3rem);
@@ -945,7 +1067,7 @@ a{ color: inherit; text-decoration: none; }
 .invitation-card__border::after{ bottom: -1px; right: -1px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
 .invitation-card__eyebrow{
   font-family: var(--f-serif); font-style: italic; font-size: .95rem; color: var(--brown); opacity: .8;
-  margin-bottom: 1.2em;
+  margin-bottom: .9em;
 }
 .invitation-card__names{
   font-family: var(--f-display); font-weight: 500;
